@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model PersonInfo {
+  id                   Int    @id @default(autoincrement())
+  gender               String @db.VarChar(1)
+  age                  Int    @db.SmallInt
+  smoking              Int    @db.SmallInt
+  yellowFingers        Int    @db.SmallInt
+  anxiety              Int    @db.SmallInt
+  peerPressure         Int    @db.SmallInt
+  chronicDisease       Int    @db.SmallInt
+  fatigue              Int    @db.SmallInt
+  allergy              Int    @db.SmallInt
+  wheezing             Int    @db.SmallInt
+  alchoholConsuming    Int    @db.SmallInt
+  coughing             Int    @db.SmallInt
+  shortnessOfBreath    Int    @db.SmallInt
+  swallowingDifficulty Int    @db.SmallInt
+  chestPain            Int    @db.SmallInt
+}

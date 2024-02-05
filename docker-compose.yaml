@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  # server:
+  #   image: node:20.11.0-alpine3.19
+  #   build:
+  #     dockerfile: ./Dockerfile
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - 6257:6257
+  #   restart: always
+  #   depends_on:
+  #     - db
+  #     - redis
+  #   container_name: nestjs-server
+  #   volumes:
+  #     - ./:/nestjs-volume
+  #     - ./node_modules:/app/node_modules
+
+  db:
+    image: postgres:16.1-alpine3.19
+    ports:
+      - 5432:5432
+    restart: always
+    container_name: postgres-db
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis/redis-stack:7.2.0-v8
+    ports:
+      - 6379:6379
+      - 8001:8001
+    restart: always
+    container_name: redis-stack-container
+    volumes:
+      - redis:/data
+
+volumes:
+  postgres_data:
+  redis:
